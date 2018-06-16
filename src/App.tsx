@@ -1,4 +1,6 @@
 import * as React from 'react';
+
+import Header from './components/Header/Header';
 import Todo from './components/Todo/Todo';
 
 import './App.css';
@@ -23,7 +25,14 @@ const todoItems = [
 
 class App extends React.Component {
   public render() {
-    return <Todo items={ todoItems }/>;
+    return (
+      <div className="wrapper">
+        <Header title='ToDo component' />
+        <div className="content">
+          <Todo items={ todoItems }/>
+        </div>
+      </div>
+    );
   }
 }
 
