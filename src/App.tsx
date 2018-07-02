@@ -1,37 +1,62 @@
 import * as React from 'react';
 
-import Header from './components/Header/Header';
-import Todo from './components/Todo/Todo';
+// import history from './history';
+// import Home from './pages/Home/Home';
+// import Todo from './components/Todo/Todo';
+
+import { Route } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
+
+// import Auth from './components/Auth/Auth';
+
+import routes from './routes';
 
 import './App.css';
 
-const todoItems = [
-  {
-    checked: true,
-    id: 1,
-    name: 'Buy milk'
-  },
-  {
-    checked: false,
-    id: 2,
-    name: 'Render TS'
-  },
-  {
-    checked: false,
-    id: 3,
-    name: 'Drive home'
-  }
-];
+export interface Props {
+  auth?: {
+        login?: any,
+        logout?: any
+    }
+}
 
-class App extends React.Component {
-  public render() {
+export interface RoutesItem {
+  path: string,
+  component: any
+}
+
+// const myAuth = new Auth();
+
+// const handleAuthentication = (nextState: any, replace: any) => {
+//   if (/access_token|id_token|error/.test(nextState.location.hash)) {
+//     myAuth.handleAuthentication();
+//   }
+// }
+
+class App extends React.Component<Props> {
+  public login() {
+    const { auth = {} } = this.props;
+
+    auth.login();
+
+  }
+
+  public logout() {
+      const { auth = {} } = this.props;
+
+      auth.logout();
+  }
+
+  public render(): JSX.Element {
     return (
-      <div className="wrapper">
-        <Header title='ToDo component' />
-        <div className="content">
-          <Todo items={ todoItems }/>
+      <BrowserRouter>
+        <div>
+          { routes.map( (route: RoutesItem, index: number) => {
+              return <Route exact={true} path={ route.path } component={ route.component } key={ `menu-` + index } />
+            })
+          }
         </div>
-      </div>
+      </BrowserRouter>
     );
   }
 }

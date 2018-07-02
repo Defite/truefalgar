@@ -4,24 +4,29 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
-export interface Props {
+import Menu from '../Menu/Menu';
+import routes from '../../routes'
+
+export interface HeaderProps {
     title: string
 }
 
-class Header extends React.Component<Props, {}> {
-  public render() {
-    const { title } = this.props;
+class Header extends React.Component<HeaderProps> {
+    public render(): JSX.Element {
+        const { title } = this.props;
 
-    return (
-        <AppBar position="static">
-            <Toolbar>
-            <Typography variant="title" color="inherit">
-                {title}
-            </Typography>
-            </Toolbar>
-        </AppBar>
-    );
-  }
+        return (
+            <AppBar position="static">
+                <Toolbar>
+                <Typography variant="title" color="inherit">
+                    {title}
+                </Typography>
+                <Menu links={ routes }/>
+
+                </Toolbar>
+            </AppBar>
+        );
+    }
 }
 
 export default Header;
