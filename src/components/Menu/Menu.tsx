@@ -21,15 +21,14 @@ class Menu extends React.Component<MenuProps> {
         const { links } = this.props;
         
         return links
-        .filter((link) => !link.exclude)
-        .map( (link, index) => {
-            return (
-                <div key={ 'menu-item-' + index }>
-                     <Button><Link to={ link.path }>{ link.name }</Link></Button>
-                </div>
-            ) 
-            
-        });
+            .filter((link) => !link.exclude)
+            .map( (link, index) => {
+                return (
+                    <div key={ 'menu-item-' + index }>
+                        <Button><Link to={ link.path }>{ link.name }</Link></Button>
+                    </div>
+                )
+            });
     }
 }
 

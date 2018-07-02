@@ -1,13 +1,7 @@
 import * as React from 'react';
 
-// import history from './history';
-// import Home from './pages/Home/Home';
-// import Todo from './components/Todo/Todo';
-
 import { Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
-
-// import Auth from './components/Auth/Auth';
 
 import routes from './routes';
 
@@ -24,14 +18,6 @@ export interface RoutesItem {
   path: string,
   component: any
 }
-
-// const myAuth = new Auth();
-
-// const handleAuthentication = (nextState: any, replace: any) => {
-//   if (/access_token|id_token|error/.test(nextState.location.hash)) {
-//     myAuth.handleAuthentication();
-//   }
-// }
 
 class App extends React.Component<Props> {
   public login() {
