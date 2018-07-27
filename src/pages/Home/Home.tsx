@@ -1,24 +1,32 @@
 import * as React from 'react';
+import pure from 'recompose/pure';
 import Page from '../Page/Page';
-import { Link } from 'react-router-dom';
 
 export interface Props {
-    title: string
+    isAuth: boolean,
+    onLogin: () => void,
+    onLogout: () => void
 }
 
-class Home extends React.Component<Props, {}> {
+class Home extends React.Component<Props> {
+    constructor(props: any) {
+        super(props);
+    }
 
     public render(): JSX.Element {
+        const { isAuth } = this.props;
         
         return (
-            <Page title='Truefalgar home page'>
+
+             <Page title='Truefalgar home page'>
                 This is my favourite home page so far
 
-                <Link to="/about">About page</Link>
+                <div>
+                    { isAuth ? 'You\'re all set' : 'Please, login' }    
+                </div>         
             </Page>
         );
     }
-
 }
 
-export default Home;
+export default pure(Home);
