@@ -1,28 +1,12 @@
 import * as React from 'react';
-import { HomePage } from '../pages';
-
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import { HomePage } from '../pages';
+import { AuthProps, AuthState, ConnectAuthProps } from '../types/auth';
 import * as HomeActions from '../actions';
 
-export interface ComponentProps {
-    userLogin: () => void,
-    userLogout: () => void,
-    home: {
-      isAuth: boolean
-    }
-}
-
-export interface ConnectComponentProps {
-    userLogin: () => void,
-    userLogout: () => void,
-}
-
-export interface ComponentState {
-  home: {}
-}
-
-class Home extends React.Component<ComponentProps, {}> {
+class Home extends React.Component<AuthProps, AuthState> {
   public login = () => {
     this.props.userLogin()
   }
@@ -32,7 +16,7 @@ class Home extends React.Component<ComponentProps, {}> {
   }
 
   public render() {
-    const { isAuth } = this.props.home;
+    const { isAuth } = this.props.auth;
     
     return (
       <HomePage
@@ -46,7 +30,7 @@ class Home extends React.Component<ComponentProps, {}> {
 
 const mapStateToProps = (state: any) => {
   return {
-    home: state.home
+    auth: state.auth
   }
 }
 
@@ -54,5 +38,5 @@ function mapDispatchToProps(dispatch: any) {
   return bindActionCreators(HomeActions, dispatch)
 }
 
-export default connect<{}, ConnectComponentProps>(mapStateToProps, mapDispatchToProps)(Home)
+export default connect<{}, ConnectAuthProps>(mapStateToProps, mapDispatchToProps)(Home)
 
